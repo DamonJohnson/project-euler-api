@@ -5,7 +5,7 @@ const UserModel = mongoose.model(
     "User",
     new mongoose.Schema({
         username: {
-            type: Boolean,
+            type: String,
             required: true,
         },
         password: {
