@@ -3,15 +3,24 @@ const Schema = mongoose.Schema
 
 const ProblemModel = mongoose.model(
     "Problem",
-    new mongoose.Schema({
+    new Schema({
+        eulerId: {
+            type: Number,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
         question: {
             type: String,
             required: true,
         },
-        submission: {
+        submissions: {
             type: Schema.Types.ObjectId,
-            ref: "Submission"
-        }
+            ref: "Submission",
+            required: false,
+        },
     })
 )
     

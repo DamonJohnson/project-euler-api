@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const UserModel = mongoose.model(
     "User",
-    new mongoose.Schema({
+    new Schema({
         username: {
             type: String,
             required: true,
@@ -14,7 +14,7 @@ const UserModel = mongoose.model(
         },
         submission: {
             type: Schema.Types.ObjectId,
-            ref: "Submission"
+            ref: "Submission",
         }
     })
 )

@@ -3,8 +3,12 @@ const router = express.Router()
 const UserModel = require("../db/user_model")
 
 router.get("/", async (req, res) => {
-    console.log('hi')
-//   res.send(await UserModel.find())
+    try {
+        res.status(200).send(await UserModel.find())
+    }
+    catch {
+        res.status(400).send
+    }
 })
 
 
@@ -17,17 +21,6 @@ router.post("/", async (req, res) => {
     }
   })
 })
-
-// router.post("/", async (req, res) => {
-//   try {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10)
-//     const user = { username: req.body.username, password: hashedPassword }
-//     users.push(user)
-//     res.status(201).send(user)
-//   } catch {
-//     res.status(500).send()
-//   }
-// })
 
 
 module.exports = router

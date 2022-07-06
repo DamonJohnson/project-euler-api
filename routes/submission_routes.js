@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-  SubmissionModel.create(req.body, (err, doc) => {
+  SubmissionModel.create(submission, (err, doc) => {
     if (err) {
       res.status(422).send({ error: err.message })
     } else {

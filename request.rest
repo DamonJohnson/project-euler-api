@@ -12,28 +12,37 @@ Content-Type: application/json
 "password": "password"
 }
 
-### Log in Requests
+### Problem Requests
 
+GET http://localhost:3201/api/v1/problems
 
-POST http://localhost:3201/users/login
+### 
+
+GET http://localhost:3201/api/v1/problems/1
+
+### 
+
+POST http://localhost:3201/api/v1/problems
 Content-Type: application/json
 
 {
-"username": "Greg", 
-"password": "mypassword"
+    "eulerId": 3,
+    "description": "Largest Prime Factor",
+    "question": "The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?"
 }
 
+
 ### Submission Requests
-GET http://localhost:3201/submissions
+GET http://localhost:3201/api/v1/submissions
 
 ###
 
-POST http://localhost:3201/submissions
+POST http://localhost:3201/api/v1/submissions
 Content-Type: application/json
 
 { 
-    "id":  1,
-    "user_id": 1,
-    "isCorrect": false
+    "user_id": "62c4e859fc7f1a1fc195ae07",
+    isCorrect: false,
+    "problem_id": "62c4f2c08f721c12b5ea3b63",
 }
 
