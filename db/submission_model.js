@@ -17,6 +17,11 @@ const SubmissionModel = mongoose.model(
         problem: {
             type: Schema.Types.ObjectId,
             ref: "Problem"
+        },
+        dateTime: {
+            type: Date,
+            required: true,
+            default: Date.now
         }
         
     })

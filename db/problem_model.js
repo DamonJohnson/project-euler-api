@@ -1,6 +1,26 @@
 const mongoose = require("./connection")
-const submission = require('../db/submission_model.js')
+
 const Schema = mongoose.Schema
+
+const submissionSchema = new Schema({
+  isCorrect: {
+    type: Boolean,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  problem: {
+    type: Schema.Types.ObjectId,
+    ref: "Problem"
+  },
+  dateTime: {
+    type: Date,
+    required: true,
+    default: Date.now
+  }
+})
 
 const ProblemModel = mongoose.model(
   "Problem",
@@ -17,7 +37,7 @@ const ProblemModel = mongoose.model(
       type: String,
       required: true,
       },
-    submissions: []
+    submissions: [submissionSchema]
   })
 )
     

@@ -52,11 +52,11 @@ router.post("/:id", async (req, res) => {
   ProblemModel.findOneAndUpdate(
     { _id: req.params.id },
     { $push: { submissions: req.body } },
-    function (error, success) {
+    function (error, doc) {
       if (error) {
-        console.log(error.message);
+        console.log(error);
       } else {
-        console.log(success);
+        res.send(doc.submissions)
       }
     });
 })
