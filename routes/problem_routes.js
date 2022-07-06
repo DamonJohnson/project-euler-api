@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const ProblemModel = require("../db/problem_model")
-const validations= require("../validations.js")
+const validations = require("../validations.js")
 
 
 
@@ -54,15 +54,22 @@ router.get("/:eulerId/submissions", async (req, res) => {
 
 
 
-
-
 router.post("/:eulerId", async (req, res) => {
+  
   const submission = {
     user: req.body.user,
     value: req.body.value,
     eulerId: req.params.eulerId,
-    isCorrect: true
   }
+
+  if (req.params.eulerId === 3) {
+    submission.isCorrect = validations.validateEuler3(req.body.value)
+  } else {
+    submission.isCorrect = validations.validateEuler1(req.body.value)
+  }
+
+  console.log(submission)
+  
   ProblemModel.findOneAndUpdate(
     { eulerId: req.params.eulerId },
     { $push: { submissions: submission} },
