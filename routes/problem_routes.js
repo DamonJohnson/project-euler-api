@@ -90,6 +90,11 @@ router.get("/:id/submissions", async (req, res) => {
 
 
 router.post("/:id", async (req, res) => {
+  const submission = {
+    user: req.body.user,
+    problem: req.body.problem,
+    value: req.body.value
+  }
   ProblemModel.findOneAndUpdate(
     { _id: req.params.id },
     { $push: { submissions: req.body } },

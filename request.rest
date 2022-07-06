@@ -43,6 +43,7 @@ Content-Type: application/json
 {
     "isCorrect": true,
     "user": "62c4e859fc7f1a1fc195ae07",
-    "problem": "62c563584ce4a674707ea69a"
+    "problem": "62c563584ce4a674707ea69a",
+    "value": 2222
 }
     

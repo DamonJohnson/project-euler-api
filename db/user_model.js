@@ -1,5 +1,4 @@
 const mongoose = require('./connection')
-const submission = require("../db/submission_model.js")
 const Schema = mongoose.Schema
 
 const UserModel = mongoose.model(
