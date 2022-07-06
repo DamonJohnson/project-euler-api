@@ -1,8 +1,10 @@
 const mongoose = require("mongoose")
+const dotenv = require("dotenv")
+dotenv.config()
 
 mongoose
   .connect(
-    "mongodb+srv://mongodb:mongodb@cluster0.pcbsyuv.mongodb.net/mongodb?retryWrites=true&w=majority"
+    process.env.ATLAS_DB_URL
 )
   .then(() =>
     console.log(

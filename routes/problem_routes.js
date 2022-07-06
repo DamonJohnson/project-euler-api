@@ -4,10 +4,6 @@ const ProblemModel = require("../db/problem_model")
 const validations = require("../validations.js")
 
 
-
-
-
-
 router.get("/", async (req, res) => {
   try {
         res.status(200).send(await ProblemModel.find())
@@ -40,10 +36,9 @@ router.post("/", async (req, res) => {
 router.get("/:eulerId/submissions", async (req, res) => {
   ProblemModel.findOne({ eulerId: req.params.eulerId }, (err, doc) => {
     if (err) {
-      console.log(err.message)
       res
         .status(404)
-        .send({ error: ` Could not find Euler Problem: ${req.params.eulerId} ` })
+        .send({ error: err.message })
     } else {
       res
         .status(200)
@@ -54,28 +49,20 @@ router.get("/:eulerId/submissions", async (req, res) => {
 
 
 
-router.post("/:eulerId", async (req, res) => {
-  
-  const submission = {
-    user: req.body.user,
-    value: req.body.value,
-    eulerId: req.params.eulerId,
-  }
-
+router.put("/:eulerId", async (req, res) => {
+  const submission = req.body
   if (req.params.eulerId === 3) {
     submission.isCorrect = validations.validateEuler3(req.body.value)
   } else {
     submission.isCorrect = validations.validateEuler1(req.body.value)
   }
-
-  console.log(submission)
   
   ProblemModel.findOneAndUpdate(
     { eulerId: req.params.eulerId },
     { $push: { submissions: submission} },
-    function (error, doc) {
-      if (error) {
-        console.log(error)
+    function (err, doc) {
+      if (err) {
+        res.status(400).send({ error: err.message })
       } else {
         res.send(doc.submissions)
       }

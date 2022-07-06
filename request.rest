@@ -37,7 +37,7 @@ GET http://localhost:3201/api/v1/problems/3/submissions
 
 ###
 
-POST http://localhost:3201/api/v1/problems/3
+PUT http://localhost:3201/api/v1/problems/3
 Content-Type: application/json
 
 {
