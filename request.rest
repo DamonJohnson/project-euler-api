@@ -18,7 +18,7 @@ GET http://localhost:3201/api/v1/problems
 
 ### 
 
-GET http://localhost:3201/api/v1/problems/62c563584ce4a674707ea69a
+GET http://localhost:3201/api/v1/problems/3
 
 ### 
 
@@ -33,17 +33,17 @@ Content-Type: application/json
 
 
 ### Submission Requests
-GET http://localhost:3201/api/v1/problems/62c563584ce4a674707ea69a/submissions
+GET http://localhost:3201/api/v1/problems/3/submissions
 
 ###
 
-POST http://localhost:3201/api/v1/problems/62c563584ce4a674707ea69a
+POST http://localhost:3201/api/v1/problems/3
 Content-Type: application/json
 
 {
     "isCorrect": true,
     "user": "62c4e859fc7f1a1fc195ae07",
-    "problem": "62c563584ce4a674707ea69a",
+    "eulerId": "3",
     "value": 2222
 }
     

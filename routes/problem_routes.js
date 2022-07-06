@@ -10,17 +10,16 @@ const validation = require("../validation.js")
 
 router.get("/", async (req, res) => {
   try {
-        console.log(validation.validateEuler1(1000))
         res.status(200).send(await ProblemModel.find())
     } catch {
         res.status(400)
     }
 })
 
-router.get("/:id", async (req, res) => {
-  ProblemModel.findById(req.params.id, (err, doc) => {
+router.get("/:eulerId", async (req, res) => {
+  ProblemModel.findOne({eulerId: req.params.eulerId}, (err, doc) => {
     if (err) {
-      res.status(404).send({error: `Could not find Problem: ${req.params.id}`})
+      res.status(404).send({error: `Could not find Problem: ${req.params.eulerId}`})
     } else {
       res.send(doc)
     }
@@ -38,8 +37,8 @@ router.post("/", async (req, res) => {
 })
 
 
-router.get("/:id/submissions", async (req, res) => {
-  ProblemModel.findById(req.params.id, (err, doc) => {
+router.get("/:eulerId/submissions", async (req, res) => {
+  ProblemModel.findOne({ eulerId: req.params.eulerId }, (err, doc) => {
     if (err) {
       console.log(err.message)
       res
@@ -54,14 +53,14 @@ router.get("/:id/submissions", async (req, res) => {
 })
 
 
-router.post("/:id", async (req, res) => {
+router.post("/:eulerId", async (req, res) => {
   const submission = {
     user: req.body.user,
     problem: req.body.problem,
     value: req.body.value
   }
   ProblemModel.findOneAndUpdate(
-    { _id: req.params.id },
+    { eulerId: req.params.eulerId },
     { $push: { submissions: req.body } },
     function (error, doc) {
       if (error) {
