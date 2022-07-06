@@ -3,6 +3,10 @@ const mongoose = require("./connection")
 const Schema = mongoose.Schema
 
 const submissionSchema = new Schema({
+  value: {
+    type: Number,
+    required: true,
+  },
   isCorrect: {
     type: Boolean,
     required: true,
