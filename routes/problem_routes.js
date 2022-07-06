@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const ProblemModel = require("../db/problem_model")
-const validation = require("../validation.js")
+const validations= require("../validations.js")
 
 
 
@@ -53,22 +53,27 @@ router.get("/:eulerId/submissions", async (req, res) => {
 })
 
 
+
+
+
 router.post("/:eulerId", async (req, res) => {
   const submission = {
     user: req.body.user,
-    problem: req.body.problem,
-    value: req.body.value
+    value: req.body.value,
+    eulerId: req.params.eulerId,
+    isCorrect: true
   }
   ProblemModel.findOneAndUpdate(
     { eulerId: req.params.eulerId },
-    { $push: { submissions: req.body } },
+    { $push: { submissions: submission} },
     function (error, doc) {
       if (error) {
-        console.log(error);
+        console.log(error)
       } else {
         res.send(doc.submissions)
       }
-    });
+    }
+  )
 })
 
 

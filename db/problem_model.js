@@ -13,17 +13,21 @@ const submissionSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
   },
   problem: {
     type: Schema.Types.ObjectId,
-    ref: "Problem"
+    ref: "Problem",
+  },
+  eulerId: {
+    type: Number,
+    required: true,
   },
   dateTime: {
     type: Date,
     required: true,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 })
 
 const ProblemModel = mongoose.model(

@@ -12,12 +12,12 @@ function validateEuler1(value) {
   }
 }
 
-function validateEuler3(num, value) {
+function validateEuler3(value) {
   // Creating an array of factors for num
   let factors = []
   // Max condition uses sqrt(num) to improve runtime
-  for (i = 2; i < Math.sqrt(num); i++) {
-    if (num % i === 0) {
+  for (i = 2; i < Math.sqrt(600851475143); i++) {
+    if (600851475143 % i === 0) {
       factors.push(i)
     }
   }
@@ -27,7 +27,7 @@ function validateEuler3(num, value) {
 
   // Creates an array for all prime factors
   // Pushes factors to an array until the product of factors is equal to num
-  for (i = 0; product < num; i++) {
+  for (i = 0; product < 600851475143; i++) {
     product = product * factors[i]
     primeFactors.push(factors[i])
   }
@@ -37,4 +37,4 @@ function validateEuler3(num, value) {
   } else return false
 }
 
-module.exports = { validateEuler1, validateEuler3 }
+module.exports = { validateEuler3, validateEuler1 }

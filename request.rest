@@ -41,9 +41,8 @@ POST http://localhost:3201/api/v1/problems/3
 Content-Type: application/json
 
 {
-    "isCorrect": true,
     "user": "62c4e859fc7f1a1fc195ae07",
-    "eulerId": "3",
-    "value": 2222
+    "value": 42421,
+    "isCorrect": true,
+    "eulerId": 3
 }
-    
