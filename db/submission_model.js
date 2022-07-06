@@ -1,4 +1,6 @@
 const mongoose = require('./connection')
+const User = require('../db/user_model.js')
+const Problem = require('../db/problem_model.js')
 const Schema = mongoose.Schema
 
 const SubmissionModel = mongoose.model(
@@ -8,10 +10,6 @@ const SubmissionModel = mongoose.model(
             type: Boolean,
             required: true,
         },
-        // dateTime: {
-        //     // type: Date, //Date.now()
-        //     required: true,
-        // },
         user: {
             type: Schema.Types.ObjectId,
             ref: "User"
@@ -19,7 +17,8 @@ const SubmissionModel = mongoose.model(
         problem: {
             type: Schema.Types.ObjectId,
             ref: "Problem"
-        },
+        }
+        
     })
 )
 

@@ -1,4 +1,5 @@
 const mongoose = require('./connection')
+const submission = require("../db/submission_model.js")
 const Schema = mongoose.Schema
 
 const UserModel = mongoose.model(
@@ -12,10 +13,6 @@ const UserModel = mongoose.model(
             type: String,
             required: true,
         },
-        submission: {
-            type: Schema.Types.ObjectId,
-            ref: "Submission",
-        }
     })
 )
 

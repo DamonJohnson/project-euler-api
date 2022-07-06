@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const ProblemModel = require("../db/problem_model")
+const SubmissionModel = require("../db/submission_model")
 
 router.get("/", async (req, res) => {
     try {
@@ -10,10 +11,10 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get("/:eulerId", async (req, res) => {
-  ProblemModel.findOne({ eulerId: req.params.eulerId }, (err, doc) => {
+router.get("/:id", async (req, res) => {
+  ProblemModel.findById(req.params.id, (err, doc) => {
     if (err) {
-      res.status(404).send({error: `Could not find Euler Problem: ${req.params.eulerId}`})
+      res.status(404).send({error: `Could not find Problem: ${req.params.id}`})
     } else {
       res.send(doc)
     }
@@ -29,5 +30,38 @@ router.post("/", async (req, res) => {
     }
   })
 })
+
+
+router.get("/:id/submissions", async (req, res) => {
+  ProblemModel.findById(req.params.id, (err, doc) => {
+    if (err) {
+      console.log(err.message)
+      res
+        .status(404)
+        .send({ error: ` Could not find Euler Problem: ${req.params.eulerId} ` })
+    } else {
+      res
+        .status(200)
+        .send(doc.submissions)
+    }
+  })
+})
+
+
+router.post("/:id", async (req, res) => {
+  ProblemModel.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { submissions: req.body } },
+    function (error, success) {
+      if (error) {
+        console.log(error.message);
+      } else {
+        console.log(success);
+      }
+    });
+})
+
+
+
 
 module.exports = router
